@@ -9,6 +9,42 @@ Aims
 - Implement an Inverted Index algorithm
 - Measure performance
 
+Current Functionality
+---------------------
+**24 Nov 2016**  
+The Mapper class is now functional, and given a text file will return a list of terms and an associated payload, in this simple case that is simply the term frequency.
+
+For example, given the `numbers.txt` file as input:
+
+```java
+public class Main {
+    public static void main(String[] args) throws IOException {
+        Mapper mapper = new Mapper("./data/numbers.txt");
+        mapper.generateMap();
+        mapper._printMap();
+    }
+}
+```
+
+We get the output
+
+```
+term: 'four'
+freq: 4
+
+term: 'one'
+freq: 1
+
+term: 'two'
+freq: 2
+
+term: 'three'
+freq: 3
+
+term: 'five'
+freq: 5
+```
+
 Resources
 ---------
 - [University of Birkbeck: Inverted Indexing for Text
