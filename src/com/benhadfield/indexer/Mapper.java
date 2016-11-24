@@ -1,24 +1,32 @@
 package com.benhadfield.indexer;
 
 import com.benhadfield.tokenizer.Tokenizer;
+import com.benhadfield.posting.Posting;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
+/*
  * The Mapper class is responsible for creating postings, keyed by term.
  */
 
 public class Mapper {
+
     // fields
 
-    private HashMap<String, Integer> map = new HashMap<String, Integer>();
+    private static int _fileId = 0;
+    private int fileId;
+    private HashMap<String, Posting> map = new HashMap<String, Posting>();
     private Tokenizer tokenizer;
 
     // constructors
 
     public Mapper(String file_path) throws IOException {
+        // set a unique file ID on construction, and then increment
+        this.fileId = _fileId++;
+
+        // generate tokens for the passed in file
         this.tokenizer = new Tokenizer(file_path);
         tokenizer.generateTokens();
     }
@@ -26,23 +34,28 @@ public class Mapper {
     // public methods
 
     public HashMap getMap() {
-        return this.map;
+        return map;
+    }
+
+    public int getFileId() {
+        return fileId;
     }
 
     public void generateMap() {
         ArrayList<String> tokens = tokenizer.getTokens();
         for (String token : tokens) {
             if (map.containsKey(token)) {
-                map.replace(token, map.get(token) + 1);
+                map.get(token).incrementFrequency();
             } else {
-                map.put(token, 1);
+                map.put(token, new Posting(fileId, 1));
             }
         }
     }
 
     public void _printMap() {
-        map.forEach((term, freq) -> System.out.println(
-                "term: '" + term + "'\nfreq: " + freq + "\n"));
+        System.out.println("Term\tAttributes\n");
+        map.forEach((term, posting) -> System.out.println(
+                "'" + term + "'\t" + posting.toString()));
     }
 
     // private methods

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.FileReader;
 import java.io.BufferedReader;
 
-/**
+/*
  * File responsible for reading file data.
  */
 
