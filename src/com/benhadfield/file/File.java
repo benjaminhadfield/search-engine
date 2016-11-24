@@ -3,7 +3,6 @@ package com.benhadfield.file;
 import java.io.IOException;
 import java.io.FileReader;
 import java.io.BufferedReader;
-import java.nio.Buffer;
 
 /**
  * File responsible for reading file data.
@@ -23,7 +22,7 @@ public class File {
 
     // public methods
 
-    public String[] readFile() throws IOException {
+    public String readFile() throws IOException {
         // set up readers
         FileReader fr = new FileReader(path);
         BufferedReader br = new BufferedReader(fr);
@@ -39,7 +38,7 @@ public class File {
 
         // cleanup and return
         br.close();
-        return data;
+        return convertArrayToString(data);
     }
 
     // private methods
@@ -61,5 +60,12 @@ public class File {
         // cleanup and return
         bf.close();
         return numberOfLines;
+    }
+
+    private String convertArrayToString(String[] array) {
+        /*
+        * Method takes an array of strings and converts it to
+        * */
+        return String.join(" ", array);
     }
 }

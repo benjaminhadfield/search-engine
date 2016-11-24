@@ -11,13 +11,13 @@ import java.util.ArrayList;
 
 public class Tokenizer {
 
-    private String[] fileLines;
+    private String fileData;
     private ArrayList<String> tokens = new ArrayList<String>();
 
     // constructors
 
     public Tokenizer(String path) throws IOException {
-        this.fileLines = new File(path).readFile();
+        this.fileData = new File(path).readFile();
     }
 
     // public methods
@@ -27,10 +27,11 @@ public class Tokenizer {
     }
 
     public void createTokens() {
-        // handle token creation per line
-        for (String line : fileLines) {
-            String[] words = line.split("\\W");
-            for (String word : words) {
+        // create words from fileData
+        String[] words = fileData.split("\\W");
+        for (String word : words) {
+            // check word exists, then normalise it and add it to token array
+            if (word.length() > 0) {
                 String token = normalizeToken(word);
                 tokens.add(token);
             }
