@@ -18,7 +18,6 @@ For example, given the `data/numbers.txt` file as input:
 
 Current Functionality
 ---------------------
-**24 Nov 2016, 21:56**  
 Implemented a Postings class, to relate a document ID with a term frequency.
 
 For example, given the `data/numbers.txt` file as input we get the output
@@ -31,28 +30,6 @@ Term    Attributes
 'two'   (fileId: 0, frequency: 2)
 'three'	(fileId: 0, frequency: 3)
 'five'  (fileId: 0, frequency: 5)
-```
-
-**24 Nov 2016, 17:51**  
-The Mapper class is now functional, and given a text file will return a list of terms and an associated payload, in this simple case that is simply the term frequency.
-
-For example, given the `data/numbers.txt` file as input we get the output
-
-```
-term: 'four'
-freq: 4
-
-term: 'one'
-freq: 1
-
-term: 'two'
-freq: 2
-
-term: 'three'
-freq: 3
-
-term: 'five'
-freq: 5
 ```
 
 Resources
