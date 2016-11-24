@@ -26,7 +26,7 @@ public class Tokenizer {
         return this.tokens;
     }
 
-    public void createTokens() {
+    public void generateTokens() {
         // create words from fileData
         String[] words = fileData.split("\\W");
         for (String word : words) {

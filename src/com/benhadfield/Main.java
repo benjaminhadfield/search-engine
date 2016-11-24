@@ -1,17 +1,15 @@
 package com.benhadfield;
 
-import com.benhadfield.tokenizer.Tokenizer;
+import com.benhadfield.indexer.Mapper;
 
 import java.io.IOException;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Tokenizer t = new Tokenizer("./data/inverted_index.txt");
-        t.createTokens();
+        Mapper mapper = new Mapper("./data/simple.txt");
+        mapper.generateMap();
 
-        for (String token : t.getTokens()) {
-            System.out.println(token);
-        }
+        mapper._printMap();
     }
 }
