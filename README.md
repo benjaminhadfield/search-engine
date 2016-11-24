@@ -10,12 +10,6 @@ Aims
 - Implement an Inverted Index algorithm
 - Measure performance
 
-Concept
--------
-Let's assume we have two documents, `file_1.txt` and `file_2.txt`.
-
-For example, given the `data/numbers.txt` file as input:
-
 Current Functionality
 ---------------------
 Implemented a Postings class, to relate a document ID with a term frequency.
