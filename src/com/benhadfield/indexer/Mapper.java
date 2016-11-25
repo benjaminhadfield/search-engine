@@ -28,7 +28,6 @@ public class Mapper {
 
         // generate tokens for the passed in file
         this.tokenizer = new Tokenizer(file_path);
-        tokenizer.generateTokens();
 
         // generate map
         generateMap();

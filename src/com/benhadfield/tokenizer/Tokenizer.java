@@ -3,6 +3,7 @@ package com.benhadfield.tokenizer;
 import com.benhadfield.file.File;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -10,14 +11,15 @@ import java.util.ArrayList;
  */
 
 public class Tokenizer {
+    // fields
 
-    private String fileData;
     private ArrayList<String> tokens = new ArrayList<String>();
 
     // constructors
 
     public Tokenizer(String path) throws IOException {
-        this.fileData = new File(path).readFile();
+        String data = new File(path).readFile();
+        this.tokens = generateTokens(data);
     }
 
     // public methods
@@ -26,19 +28,22 @@ public class Tokenizer {
         return this.tokens;
     }
 
-    public void generateTokens() {
-        // create words from fileData
-        String[] words = fileData.split("\\W");
+    // private methods
+
+    private ArrayList<String> generateTokens(String data) {
+        // Pure function takes a string and returns an array list of tokens.
+
+        String[] words = data.split("\\W");
+        ArrayList<String> tokens = new ArrayList<>();
         for (String word : words) {
-            // check word exists, then normalise it and add it to token array
+            // check word exists, then normaliseit and add it to token array
             if (word.length() > 0) {
                 String token = normalizeToken(word);
                 tokens.add(token);
             }
         }
+        return tokens;
     }
-
-    // private methods
 
     private String normalizeToken(String word) {
         /*
