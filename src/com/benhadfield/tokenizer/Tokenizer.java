@@ -49,8 +49,8 @@ public class Tokenizer {
         /*
         * Normalization consists of
         * 1) converting to lowercase
-        * 2) depluralizing
-        * 3) converting to root word
+        * 2) *depluralizing
+        * 3) *converting to root word
         * */
         return word.toLowerCase();
     }
