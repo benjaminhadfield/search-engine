@@ -53,7 +53,7 @@ public class Mapper {
 
     // private methods
 
-    public void generateMap() {
+    private void generateMap() {
         ArrayList<String> tokens = tokenizer.getTokens();
         for (String token : tokens) {
             if (map.containsKey(token)) {
