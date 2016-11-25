@@ -8,9 +8,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/*
- * Created by Moose on 25/11/2016.
- */
 
 class TokenizerTest {
     private Tokenizer tokenizer;
@@ -21,8 +18,8 @@ class TokenizerTest {
     }
 
     @Test
-    void testGetTokens() {
-        // we expect the tokenizer to return an ArrayList if called after generateTokens()
+    void getTokens() {
+        // we expect the tokenizer to return an ArrayList<String>.
         assertEquals(
                 new ArrayList<>(Arrays.asList("one", "fish", "two", "fish")),
                 tokenizer.getTokens()
@@ -30,7 +27,15 @@ class TokenizerTest {
     }
 
     @Test
-    void testGenerateTokens() {
-        assertEquals(2, 1 + 1);
+    void generateTokens() {
+        // we expect generate tokens to produce a normalized list of tokens given a String.
+        assertEquals(
+                new ArrayList<>(Arrays.asList("one", "two", "three")),
+                tokenizer.generateTokens("One, tWo thRee.")
+        );
+        assertEquals(
+                new ArrayList<>(Arrays.asList("1", "2", "3")),
+                tokenizer.generateTokens("1 -- 2: (3);")
+        );
     }
 }

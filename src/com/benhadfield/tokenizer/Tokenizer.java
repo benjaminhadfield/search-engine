@@ -28,9 +28,7 @@ public class Tokenizer {
         return this.tokens;
     }
 
-    // private methods
-
-    private ArrayList<String> generateTokens(String data) {
+    public ArrayList<String> generateTokens(String data) {
         // Pure function takes a string and returns an array list of tokens.
 
         String[] words = data.split("\\W");
@@ -44,6 +42,8 @@ public class Tokenizer {
         }
         return tokens;
     }
+
+    // private methods
 
     private String normalizeToken(String word) {
         /*

@@ -17,7 +17,7 @@ public class Mapper {
 
     private static int _fileId = 0;
     private int fileId;
-    private HashMap<String, Posting> map = new HashMap<String, Posting>();
+    private HashMap<String, Posting> map = new HashMap<>();
     private Tokenizer tokenizer;
 
     // constructors
@@ -44,6 +44,7 @@ public class Mapper {
     }
 
     public void _printMap() {
+        // non-pure, intended for debug.
         System.out.println("Term\tAttributes");
         map.forEach((term, posting) -> System.out.println(
                 "'" + term + "'\t" + posting.toString()));
