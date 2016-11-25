@@ -1,7 +1,7 @@
 package com.benhadfield.posting;
 
 /*
- * Represents a single posting instance, ie. a term-document pair.
+ * Represents a single posting instance, ie. a fileID-frequency pair.
  */
 
 public class Posting {

@@ -7,8 +7,9 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Mapper mapper = new Mapper("./data/numbers.txt");
-        mapper.generateMap();
-        mapper._printMap();
+        Mapper m1 = new Mapper("./data/example_2.txt");
+        Mapper m2 = new Mapper("./data/example_1.txt");
+        m1._printMap();
+        m2._printMap();
     }
 }

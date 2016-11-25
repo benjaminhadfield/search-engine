@@ -29,6 +29,9 @@ public class Mapper {
         // generate tokens for the passed in file
         this.tokenizer = new Tokenizer(file_path);
         tokenizer.generateTokens();
+
+        // generate map
+        generateMap();
     }
 
     // public methods
@@ -41,6 +44,15 @@ public class Mapper {
         return fileId;
     }
 
+    public void _printMap() {
+        System.out.println("Term\tAttributes");
+        map.forEach((term, posting) -> System.out.println(
+                "'" + term + "'\t" + posting.toString()));
+        System.out.println();
+    }
+
+    // private methods
+
     public void generateMap() {
         ArrayList<String> tokens = tokenizer.getTokens();
         for (String token : tokens) {
@@ -51,12 +63,4 @@ public class Mapper {
             }
         }
     }
-
-    public void _printMap() {
-        System.out.println("Term\tAttributes\n");
-        map.forEach((term, posting) -> System.out.println(
-                "'" + term + "'\t" + posting.toString()));
-    }
-
-    // private methods
 }
