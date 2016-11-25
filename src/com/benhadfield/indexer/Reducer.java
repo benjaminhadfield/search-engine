@@ -2,24 +2,40 @@ package com.benhadfield.indexer;
 
 import com.benhadfield.posting.Posting;
 
-import java.util.HashMap;
+import java.util.*;
 
 /*
  * The Reducer class is responsible for writing postings lists to disk.
  */
 
 public class Reducer {
-    // fields
+    private String term;
+    private Posting[] postings;
 
-    private HashMap<String, Posting[]> list;
+    /**
+     * Constructs a reducer with a term and sorted list of postings.
+     */
 
-    // constructors
-
-    public Reducer() {
-
+    public Reducer(String term, Posting[] postings) {
+        this.term = term;
+        this.postings = sortPostings(postings);
     }
 
-    // public methods
+    public String getTerm() {
+        return term;
+    }
 
-    // private methods
+    public Posting[] getPostings() {
+        return postings;
+    }
+
+    private Posting[] sortPostings(Posting[] postings) {
+        // copy array to prevent mutation of original array
+        Posting[] postingsCopy = postings.clone();
+
+        // sort array and return
+        Arrays.sort(postingsCopy);
+        return postingsCopy;
+    }
+
 }
