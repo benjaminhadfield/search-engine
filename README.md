@@ -27,10 +27,10 @@ class Main {
 ```
 ```
 Term    Postings
-red     (fileId: 0, frequency: 1), 
 blue    (fileId: 0, frequency: 1), 
 fish    (fileId: 0, frequency: 2), (fileId: 1, frequency: 2), 
 one     (fileId: 1, frequency: 1), 
+red     (fileId: 0, frequency: 1), 
 two     (fileId: 1, frequency: 1), 
 ```
 
@@ -51,8 +51,8 @@ class Main {
 ```
 Term    Attributes
 
-'one'   (fileId: 0, frequency: 1)
 'fish'  (fileId: 0, frequency: 2)
+'one'   (fileId: 0, frequency: 1)
 'two'   (fileId: 0, frequency: 1)
 ```
 
