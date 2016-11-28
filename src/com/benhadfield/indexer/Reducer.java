@@ -43,6 +43,7 @@ public class Reducer {
     }
 
     private String encodePosting(Posting posting) {
+        // this is where we encode posting data
         return posting.getFileId() + ":" + posting.getFrequency() + ",";
     }
 

@@ -14,5 +14,8 @@ public class Main {
 
         Grouper grouper = new Grouper(m1, m2);
         grouper._printInvertedIndex();
+
+        Reducer reducer = new Reducer(grouper.getInvertedIndex());
+        reducer.commitIndex();
     }
 }
