@@ -12,7 +12,8 @@ Aims
 Current Functionality
 ---------------------
 **[`Grouper`](https://github.com/benjaminhadfield/search-engine/blob/master/src/com/benhadfield/indexer/Grouper.java)**  
-The `Grouper` class takes a list of `Mapper` objects, and outputs an inverted index, which is a map of terms to an array of file ID - term frequency pairs. Note that terms are sorted alphabetically.
+The `Grouper` class takes a list of `Mapper` objects, and generates an inverted index, which is a map of terms to an array of file ID - term frequency pairs.
+Note that terms in the map are sorted alphabetically.
 
 ```java
 class Main {
@@ -35,9 +36,10 @@ This code would generate an `_index.txt` file.
 ```
 There is a very simple encoding.
 
-Lines are ordered alphabetically according to their corresponding token. Files containing the token are listed, else they are omitted.
-The number before the `:` corresponds to the file ID, which is assigned by the `Mapper` class.
-The second number is the number of times the token appears in that file.
+Lines are ordered alphabetically according to their corresponding token.
+Each line contains information for files containing that token only.
+The number before the `:` corresponds to the file ID (which is assigned by the `Mapper` class).
+The second number corresponds to the number of times the token appears in that file.
 
 **[`Reducer`](https://github.com/benjaminhadfield/search-engine/blob/master/src/com/benhadfield/indexer/Reducer.java)**  
 The `Reducer` class takes the inverted index output by the `Grouper` and encodes then writes the postings to disk.
