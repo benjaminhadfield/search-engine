@@ -12,7 +12,7 @@ public class Main {
         Mapper m1 = new Mapper("./data/example_2.txt");
         Mapper m2 = new Mapper("./data/example_1.txt");
 
-        Grouper grouper = new Grouper(m1, m2);
+        Grouper grouper = new Grouper(m2, m1);
         grouper._printInvertedIndex();
 
         Reducer reducer = new Reducer(grouper.getInvertedIndex());

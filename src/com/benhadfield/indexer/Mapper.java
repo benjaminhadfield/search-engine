@@ -11,7 +11,7 @@ import java.util.TreeMap;
  * The Mapper class is responsible for creating postings, keyed by term.
  */
 
-public class Mapper {
+public class Mapper implements Comparable<Mapper> {
     private static int _fileId = 0;
     private int fileId;
     private TreeMap<String, Posting> map = new TreeMap<>();
@@ -53,5 +53,10 @@ public class Mapper {
                 map.put(token, new Posting(fileId, 1));
             }
         }
+    }
+
+    @Override
+    public int compareTo(Mapper mapper) {
+        return (int)Math.signum(fileId - mapper.getFileId());
     }
 }

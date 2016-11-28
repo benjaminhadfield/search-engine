@@ -3,6 +3,7 @@ package com.benhadfield.indexer;
 import com.benhadfield.posting.Posting;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.TreeMap;
 
@@ -15,7 +16,7 @@ public class Grouper {
     private Mapper[] mappers;
 
     public Grouper(Mapper... mappers) {
-        this.mappers = mappers;
+        this.mappers = sortMappers(mappers);
         group();
     }
 
@@ -42,6 +43,12 @@ public class Grouper {
             TreeMap<String, Posting> map = mapper.getMap();
             map.forEach(this::addToGroup);
         }
+    }
+
+    private Mapper[] sortMappers(Mapper[] mappers) {
+        // sort mapper objects according to fileID
+        Arrays.sort(mappers);
+        return mappers;
     }
 
     private void addToGroup(String term, Posting posting) {
