@@ -5,7 +5,7 @@ import com.benhadfield.posting.Posting;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.TreeMap;
 
 /**
  * The Mapper class is responsible for creating postings, keyed by term.
@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class Mapper {
     private static int _fileId = 0;
     private int fileId;
-    private HashMap<String, Posting> map = new HashMap<>();
+    private TreeMap<String, Posting> map = new TreeMap<>();
     private Tokenizer tokenizer;
 
     public Mapper(String file_path) throws IOException {
@@ -28,7 +28,7 @@ public class Mapper {
         generateMap();
     }
 
-    public HashMap<String, Posting> getMap() {
+    public TreeMap<String, Posting> getMap() {
         return map;
     }
 

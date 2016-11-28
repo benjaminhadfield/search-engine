@@ -4,14 +4,14 @@ import com.benhadfield.posting.Posting;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.TreeMap;
 
 /**
  * The Grouper class is responsible for grouping postings across multiple files by term.
  */
 
 public class Grouper {
-    private HashMap<String, ArrayList<Posting>> group = new HashMap<>();
+    private TreeMap<String, ArrayList<Posting>> group = new TreeMap<>();
     private Mapper[] mappers;
 
     public Grouper(Mapper... mappers) {
@@ -20,7 +20,7 @@ public class Grouper {
     }
 
 
-    public HashMap<String, ArrayList<Posting>> getGroup() {
+    public TreeMap<String, ArrayList<Posting>> getGroup() {
         return group;
     }
 
@@ -39,7 +39,7 @@ public class Grouper {
 
     private void group() {
         for (Mapper mapper : mappers) {
-            HashMap<String, Posting> map = mapper.getMap();
+            TreeMap<String, Posting> map = mapper.getMap();
             map.forEach(this::addToGroup);
         }
     }
