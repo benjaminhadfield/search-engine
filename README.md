@@ -14,6 +14,26 @@ Current Functionality
 **[`Grouper`](https://github.com/benjaminhadfield/search-engine/blob/master/src/com/benhadfield/indexer/Grouper.java)**  
 The `Grouper` class takes a list of `Mapper` objects, and outputs an inverted index, which is a map of terms to an array of file ID - term frequency pairs.
 
+```java
+class Main {
+    public static void main(String[] args) {
+        Mapper m1 = new Mapper("./data/example_2.txt");
+        Mapper m2 = new Mapper("./data/example_1.txt");
+
+        Grouper grouper = new Grouper(m1, m2);
+        grouper._printGroup();
+    }
+}
+```
+```
+Term    Postings
+red     (fileId: 0, frequency: 1), 
+blue    (fileId: 0, frequency: 1), 
+fish    (fileId: 0, frequency: 2), (fileId: 1, frequency: 2), 
+one     (fileId: 1, frequency: 1), 
+two     (fileId: 1, frequency: 1), 
+```
+
 **[`Reducer`](https://github.com/benjaminhadfield/search-engine/blob/master/src/com/benhadfield/indexer/Reducer.java)**  
 The `Reducer` class takes the inverted index output by the `Grouper` and encodes then writes the postings to disk.
 

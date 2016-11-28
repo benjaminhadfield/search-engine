@@ -28,7 +28,7 @@ public class Mapper {
         generateMap();
     }
 
-    public HashMap getMap() {
+    public HashMap<String, Posting> getMap() {
         return map;
     }
 
