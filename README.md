@@ -62,7 +62,7 @@ two     (fileId: 1, frequency: 1),
 
 
 **[`Reducer`](https://github.com/benjaminhadfield/search-engine/blob/master/src/com/benhadfield/indexer/Reducer.java)**  
-The `Reducer` class takes the inverted index output by the `Grouper` and encodes then writes the postings to disk.
+The `Reducer` class takes the inverted index output by the `Grouper` and writes an encoded version of the postings lists to disk.
 
 ```java
 class Main {
