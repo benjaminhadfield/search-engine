@@ -11,18 +11,22 @@ Aims
 
 Current Functionality
 ---------------------
-Implemented a Postings class, to relate a document ID with a term frequency.
+The `Grouper` class takes a list of `Mapper` objects, and outputs an inverted index, which is a map of terms to an array of file ID - term frequency pairs.
 
-For example, given the `data/numbers.txt` file as input we get the output
+The `Reducer` class takes the inverted index output by the `Grouper` and encodes then writes the postings to disk.
 
+The `Mapper` class takes a file path and uses a `Tokenizer` instance to generate a Hash Map, with a `Token : Posting` structure.
+
+```java
+Mapper mapper = new Mapper("./data/example_1.txt");
+mapper._printMap();
+```
 ```
 Term    Attributes
 
-'four'  (fileId: 0, frequency: 4)
 'one'   (fileId: 0, frequency: 1)
-'two'   (fileId: 0, frequency: 2)
-'three'	(fileId: 0, frequency: 3)
-'five'  (fileId: 0, frequency: 5)
+'fish'  (fileId: 0, frequency: 2)
+'two'   (fileId: 0, frequency: 1)
 ```
 
 Resources
