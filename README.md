@@ -13,7 +13,6 @@ Current Functionality
 ---------------------
 **[`Mapper`](https://github.com/benjaminhadfield/search-engine/blob/master/src/com/benhadfield/indexer/Mapper.java)**  
 The `Mapper` class takes a path to a file and uses a `Tokenizer` instance to generate a map, with a `K<Token>, V<Posting>` structure.
-This map contains a mapping of tokens to a file ID - token frequency pair for that file.
 
 ```java
 class Main {
@@ -24,7 +23,7 @@ class Main {
 }
 ```
 
-The code would output the structure of the generated map.
+This code would output the structure of the generated map.
 
 ```text
 Term    Attributes
