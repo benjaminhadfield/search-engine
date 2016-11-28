@@ -20,10 +20,8 @@ public class Mapper implements Comparable<Mapper> {
     public Mapper(String file_path) throws IOException {
         // set a unique file ID on construction, and then increment
         this.fileId = _fileId++;
-
         // generate tokens for the passed in file
         this.tokenizer = new Tokenizer(file_path);
-
         // generate map
         generateMap();
     }

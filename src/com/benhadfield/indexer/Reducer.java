@@ -2,6 +2,7 @@ package com.benhadfield.indexer;
 
 import com.benhadfield.file.File;
 import com.benhadfield.posting.Posting;
+import com.benhadfield.retriever.Retriever;
 
 import java.util.*;
 
@@ -13,16 +14,19 @@ public class Reducer {
     private final static int termLimit = 100;
     private static int identifier = 0;
     private final String path;
+    private String[] keys;
     private List<List<Posting>> values = new ArrayList<>();
     private Reducer nextReducer = null;
 
     /**
-     * Constructs a reducer with a term and sorted list of postings.
+     * Constructs a reducer with list of postings sorted according to their corresponding term.
      */
 
     public Reducer(TreeMap<String, ArrayList<Posting>> invertedIndex) {
         // generate path name
         this.path = generatePath();
+        // get keys from inverted index
+        this.keys = invertedIndex.keySet().toArray(new String[invertedIndex.size()]);
         // get values from inverted index
         this.values = getValues(invertedIndex);
         // encode to file
@@ -46,7 +50,7 @@ public class Reducer {
     }
 
     private void commitIndex() {
-        // commits the group to a file at the specified location
+        // commits the group to a file, automatically named based on the identifier
         File file = new File(path);
         String [] data = new String[values.size()];
 
@@ -56,6 +60,7 @@ public class Reducer {
             // encode all postings for a given term, this is sorted by document ID already.
             for (Posting posting : postings) {
                 line += encodePosting(posting);
+                Retriever.addLocation(keys[i], path, i);
             }
             data[i++] = line;
         }
@@ -93,6 +98,6 @@ public class Reducer {
     }
 
     private String generatePath() {
-        return "./data/_index" + identifier++ + ".txt";
+        return "./data/_index/_index" + identifier++ + ".txt";
     }
 }

@@ -20,7 +20,7 @@ The `Mapper` class takes a path to a file and uses a `Tokenizer` instance to gen
 ```java
 class Main {
     public static void main(String[] args) {
-        Mapper mapper = new Mapper("./data/example_1.txt");
+        Mapper mapper = new Mapper("./data/example/example_1.txt");
         mapper._printMap();
     }
 }
