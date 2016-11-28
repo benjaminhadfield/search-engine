@@ -17,22 +17,27 @@ The `Grouper` class takes a list of `Mapper` objects, and outputs an inverted in
 ```java
 class Main {
     public static void main(String[] args) {
-        Mapper m1 = new Mapper("./data/example_2.txt");
-        Mapper m2 = new Mapper("./data/example_1.txt");
+        Mapper m1 = new Mapper("./data/example_1.txt");
+        Mapper m2 = new Mapper("./data/example_2.txt");
 
         Grouper grouper = new Grouper(m1, m2);
-        grouper._printGroup();
+        grouper.commitIndex();
     }
 }
 ```
+This code would generate an `_index.txt` file.
 ```
-Term    Postings
-blue    (fileId: 0, frequency: 1), 
-fish    (fileId: 0, frequency: 2), (fileId: 1, frequency: 2), 
-one     (fileId: 1, frequency: 1), 
-red     (fileId: 0, frequency: 1), 
-two     (fileId: 1, frequency: 1), 
+0:1,
+0:2,1:2,
+1:1,
+0:1,
+1:1, 
 ```
+There is a very simple encoding.
+
+Lines are ordered alphabetically according to their corresponding token. Files containing the token are listed, else they are omitted.
+The number before the `:` corresponds to the file ID, which is assigned by the `Mapper` class.
+The second number is the number of times the token appears in that file.
 
 **[`Reducer`](https://github.com/benjaminhadfield/search-engine/blob/master/src/com/benhadfield/indexer/Reducer.java)**  
 The `Reducer` class takes the inverted index output by the `Grouper` and encodes then writes the postings to disk.

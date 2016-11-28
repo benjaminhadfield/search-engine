@@ -13,5 +13,6 @@ public class Main {
 
         Grouper grouper = new Grouper(m1, m2);
         grouper._printGroup();
+        grouper.commitIndex();
     }
 }

@@ -40,12 +40,17 @@ public class File {
         return convertStringArrayToString(data);
     }
 
-    public void writeFile(String fileName, String... data) {
+    public void writeFile(String... data) {
+        // write incoming string data to file. If no data is passed in then this
+        // function does nothing.
+        if (data.length == 0) {
+            return;
+        }
+
         Charset utf8 = StandardCharsets.UTF_8;
         List<String> lines = Arrays.asList(data);
-
         try {
-            Files.write(Paths.get(fileName), lines, utf8);
+            Files.write(Paths.get(path), lines, utf8);
         } catch (IOException e) {
             e.printStackTrace();
         }
