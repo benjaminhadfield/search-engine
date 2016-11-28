@@ -10,7 +10,7 @@ import java.util.*;
  */
 
 public class Reducer {
-    private final static int termLimit = 2;
+    private final static int termLimit = 100;
     private static int identifier = 0;
     private final String path;
     private List<List<Posting>> values = new ArrayList<>();
@@ -64,9 +64,10 @@ public class Reducer {
 
     private ArrayList<List<Posting>> getValues(TreeMap<String, ArrayList<Posting>> invertedIndex) {
         ArrayList<List<Posting>> values = new ArrayList<>();
+
         // here we loop through the inverted index, assigning the postings lists to the values field
         // if there are more values than the limit then a second reducer class is created to handle the
-        // rest (creating a distributed system).
+        // rest (creating a distributed system)
         boolean isWithinLimit = termLimit > invertedIndex.size();
         int limit = isWithinLimit ? invertedIndex.size() : termLimit;
         String term = null;
