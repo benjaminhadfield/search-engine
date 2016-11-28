@@ -11,10 +11,13 @@ Aims
 
 Current Functionality
 ---------------------
+**`Grouper`**  
 The `Grouper` class takes a list of `Mapper` objects, and outputs an inverted index, which is a map of terms to an array of file ID - term frequency pairs.
 
+**`Reducer`**  
 The `Reducer` class takes the inverted index output by the `Grouper` and encodes then writes the postings to disk.
 
+**`Mapper`**  
 The `Mapper` class takes a file path and uses a `Tokenizer` instance to generate a Hash Map, with a `Token : Posting` structure.
 
 ```java
