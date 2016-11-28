@@ -7,9 +7,9 @@ To build on what I learnt in last year's object oriented module, I'm going to im
 
 Aims
 ----
-[ ] Implement an Inverted Index algorithm  
-[ ] Measure performance  
-[ ] Reiterate on original algorithm  
+- [ ] Implement an Inverted Index algorithm  
+- [ ] Measure performance  
+- [ ] Reiterate on original algorithm  
 
 
 Current Functionality
