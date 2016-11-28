@@ -10,10 +10,11 @@ import java.util.*;
  */
 
 public class Reducer {
-    private final static int termLimit = 100;
+    private final static int termLimit = 2;
     private static int identifier = 0;
     private final String path;
     private List<List<Posting>> values = new ArrayList<>();
+    private Reducer nextReducer = null;
 
     /**
      * Constructs a reducer with a term and sorted list of postings.
@@ -28,12 +29,20 @@ public class Reducer {
         commitIndex();
     }
 
-    public List<List<Posting>> getValues() {
-        return values;
+    public static int getTermLimit() {
+        return termLimit;
     }
 
     public String getPath() {
         return path;
+    }
+
+    public List<List<Posting>> getValues() {
+        return values;
+    }
+
+    public Reducer getNextReducer() {
+        return nextReducer;
     }
 
     private void commitIndex() {
@@ -71,7 +80,7 @@ public class Reducer {
         // if there are still more terms then create a new reducer to handle those
         if (!isWithinLimit) {
             invertedIndex.headMap(term, true).clear();
-            new Reducer(invertedIndex);
+            this.nextReducer = new Reducer(invertedIndex);
         }
 
         return values;

@@ -80,7 +80,7 @@ class Main {
 }
 ```
 
-The `commitIndex()` method generates an `_index.txt` file.
+The `commitIndex()` method generates an `_index0.txt` file.
 
 ```text
 0:1,
@@ -96,6 +96,9 @@ Lines are ordered alphabetically according to their corresponding token.
 Each line contains information for files containing that token only.
 The number before the `:` corresponds to the file ID (which is assigned by the `Mapper` class).
 The second number corresponds to the number of times the token appears in that file.
+
+The reducer is capable of distributing the index across multiple files, to prevent the creation of a single monolithic file.
+In this simple example, that limit is set arbitrarily at 100, meaning if the search space contains greater than 100 tokens then the index will be split across more than one `_index<i>.txt` file.
 
 
 Resources
