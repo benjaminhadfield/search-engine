@@ -1,26 +1,25 @@
 package com.benhadfield.file;
 
-import java.io.IOException;
-import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 
 /*
  * File responsible for reading file data.
  */
 
 public class File {
-
-    // fields
-
     private String path;
-
-    // constructors
 
     public File(String path) {
         this.path = path;
     }
-
-    // public methods
 
     public String readFile() throws IOException {
         // set up readers
@@ -38,10 +37,19 @@ public class File {
 
         // cleanup and return
         br.close();
-        return convertArrayToString(data);
+        return convertStringArrayToString(data);
     }
 
-    // private methods
+    public void writeFile(String fileName, String... data) {
+        Charset utf8 = StandardCharsets.UTF_8;
+        List<String> lines = Arrays.asList(data);
+
+        try {
+            Files.write(Paths.get(fileName), lines, utf8);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private int getFileLineCount() throws IOException {
         // setup readers
@@ -62,9 +70,9 @@ public class File {
         return numberOfLines;
     }
 
-    private String convertArrayToString(String[] array) {
+    private String convertStringArrayToString(String[] array) {
         /*
-        * Method takes an array of strings and converts it to
+        * Method flattens String[] to String.
         * */
         return String.join(" ", array);
     }

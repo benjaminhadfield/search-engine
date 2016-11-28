@@ -7,20 +7,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/*
+/**
  * The Mapper class is responsible for creating postings, keyed by term.
  */
 
 public class Mapper {
-
-    // fields
-
     private static int _fileId = 0;
     private int fileId;
     private HashMap<String, Posting> map = new HashMap<>();
     private Tokenizer tokenizer;
-
-    // constructors
 
     public Mapper(String file_path) throws IOException {
         // set a unique file ID on construction, and then increment
@@ -32,8 +27,6 @@ public class Mapper {
         // generate map
         generateMap();
     }
-
-    // public methods
 
     public HashMap getMap() {
         return map;
@@ -50,8 +43,6 @@ public class Mapper {
                 "'" + term + "'\t" + posting.toString()));
         System.out.println();
     }
-
-    // private methods
 
     private void generateMap() {
         ArrayList<String> tokens = tokenizer.getTokens();
