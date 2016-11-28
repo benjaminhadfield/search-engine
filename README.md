@@ -11,8 +11,31 @@ Aims
 
 Current Functionality
 ---------------------
+**[`Mapper`](https://github.com/benjaminhadfield/search-engine/blob/master/src/com/benhadfield/indexer/Mapper.java)**  
+The `Mapper` class takes a path to a file and uses a `Tokenizer` instance to generate a map, with a `K<Token>, V<Posting>` structure.
+This map contains a mapping of tokens to a file ID - token frequency pair for that file.
+
+```java
+class Main {
+    public static void main(String[] args) {
+        Mapper mapper = new Mapper("./data/example_1.txt");
+        mapper._printMap();
+    }
+}
+```
+
+The code would output the structure of the generated map.
+
+```text
+Term    Attributes
+'fish'  (fileId: 0, frequency: 2)
+'one'   (fileId: 0, frequency: 1)
+'two'   (fileId: 0, frequency: 1)
+```
+
+
 **[`Grouper`](https://github.com/benjaminhadfield/search-engine/blob/master/src/com/benhadfield/indexer/Grouper.java)**  
-The `Grouper` class takes a list of `Mapper` objects, and generates an inverted index, which is a map of terms to an array of file ID - term frequency pairs.
+The `Grouper` class takes a list of `Mapper` objects, and generates an inverted index, which is a map of terms to an array of file ID - token frequency pairs.
 Note that terms in the map are sorted alphabetically.
 
 ```java
@@ -65,31 +88,12 @@ The `commitIndex()` method generates an `_index.txt` file.
 1:1, 
 ```
 
-The encoding is simple at the moment.
+The encoding of this file is simple at the moment.
 
 Lines are ordered alphabetically according to their corresponding token.
 Each line contains information for files containing that token only.
 The number before the `:` corresponds to the file ID (which is assigned by the `Mapper` class).
 The second number corresponds to the number of times the token appears in that file.
-
-
-**[`Mapper`](https://github.com/benjaminhadfield/search-engine/blob/master/src/com/benhadfield/indexer/Mapper.java)**  
-The `Mapper` class takes a file path and uses a `Tokenizer` instance to generate a Hash Map, with a `K<Token>, V<Posting>` structure.
-
-```java
-class Main {
-    public static void main(String[] args) {
-        Mapper mapper = new Mapper("./data/example_1.txt");
-        mapper._printMap();
-    }
-}
-```
-```text
-Term    Attributes
-'fish'  (fileId: 0, frequency: 2)
-'one'   (fileId: 0, frequency: 1)
-'two'   (fileId: 0, frequency: 1)
-```
 
 
 Resources
