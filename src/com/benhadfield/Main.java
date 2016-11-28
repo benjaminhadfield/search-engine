@@ -16,6 +16,5 @@ public class Main {
         grouper._printInvertedIndex();
 
         Reducer reducer = new Reducer(grouper.getInvertedIndex());
-        reducer.commitIndex();
     }
 }

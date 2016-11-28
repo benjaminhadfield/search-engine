@@ -10,8 +10,8 @@ import java.util.*;
  */
 
 public class Reducer {
+    private final static int termLimit = 100;
     private static int identifier = 0;
-    private static int termLimit = 10;
     private final String path;
     private List<List<Posting>> values = new ArrayList<>();
 
@@ -21,9 +21,11 @@ public class Reducer {
 
     public Reducer(TreeMap<String, ArrayList<Posting>> invertedIndex) {
         // generate path name
-        this.path = "./data/_index" + identifier++ + ".txt";
+        this.path = generatePath();
         // get values from inverted index
         this.values = getValues(invertedIndex);
+        // encode to file
+        commitIndex();
     }
 
     public List<List<Posting>> getValues() {
@@ -34,7 +36,7 @@ public class Reducer {
         return path;
     }
 
-    public void commitIndex() {
+    private void commitIndex() {
         // commits the group to a file at the specified location
         File file = new File(path);
         String [] data = new String[values.size()];
@@ -51,11 +53,6 @@ public class Reducer {
         file.writeFile(data);
     }
 
-    private String encodePosting(Posting posting) {
-        // this is where we encode posting data
-        return posting.getFileId() + ":" + posting.getFrequency() + ",";
-    }
-
     private ArrayList<List<Posting>> getValues(TreeMap<String, ArrayList<Posting>> invertedIndex) {
         ArrayList<List<Posting>> values = new ArrayList<>();
         // here we loop through the inverted index, assigning the postings lists to the values field
@@ -63,16 +60,29 @@ public class Reducer {
         // rest (creating a distributed system).
         boolean isWithinLimit = termLimit > invertedIndex.size();
         int limit = isWithinLimit ? invertedIndex.size() : termLimit;
+        String term = null;
 
         for (int i = 0; i < limit; i++) {
-            String term = invertedIndex.keySet().toArray(new String[0])[i];
+            term = invertedIndex.keySet().toArray(new String[0])[i];
             ArrayList<Posting> postings = invertedIndex.get(term);
             values.add(postings);
         }
-//        for (ArrayList<Posting> postings : invertedIndex.values()) {
-//            // since we're using a TreeMap we know values are ordered by their corresponding keys
-//            values.add(postings);
-//        }
+
+        // if there are still more terms then create a new reducer to handle those
+        if (!isWithinLimit) {
+            invertedIndex.headMap(term, true).clear();
+            new Reducer(invertedIndex);
+        }
+
         return values;
+    }
+
+    private String encodePosting(Posting posting) {
+        // this is where we encode posting data
+        return posting.getFileId() + ":" + posting.getFrequency() + ",";
+    }
+
+    private String generatePath() {
+        return "./data/_index" + identifier++ + ".txt";
     }
 }
