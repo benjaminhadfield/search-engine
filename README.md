@@ -11,14 +11,14 @@ Aims
 
 Current Functionality
 ---------------------
-**`Grouper`**  
+**[`Grouper`](https://github.com/benjaminhadfield/search-engine/blob/master/src/com/benhadfield/indexer/Grouper.java)**  
 The `Grouper` class takes a list of `Mapper` objects, and outputs an inverted index, which is a map of terms to an array of file ID - term frequency pairs.
 
-**`Reducer`**  
+**[`Reducer`](https://github.com/benjaminhadfield/search-engine/blob/master/src/com/benhadfield/indexer/Reducer.java)**  
 The `Reducer` class takes the inverted index output by the `Grouper` and encodes then writes the postings to disk.
 
-**`Mapper`**  
-The `Mapper` class takes a file path and uses a `Tokenizer` instance to generate a Hash Map, with a `Token : Posting` structure.
+**[`Mapper`](https://github.com/benjaminhadfield/search-engine/blob/master/src/com/benhadfield/indexer/Mapper.java)**  
+The `Mapper` class takes a file path and uses a `Tokenizer` instance to generate a Hash Map, with a `K<Token>, V<Posting>` structure.
 
 ```java
 class Main {
