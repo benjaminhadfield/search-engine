@@ -18,8 +18,12 @@ The `Reducer` class takes the inverted index output by the `Grouper` and encodes
 The `Mapper` class takes a file path and uses a `Tokenizer` instance to generate a Hash Map, with a `Token : Posting` structure.
 
 ```java
-Mapper mapper = new Mapper("./data/example_1.txt");
-mapper._printMap();
+class Main {
+    public static void main(String[] args) {
+        Mapper mapper = new Mapper("./data/example_1.txt");
+        mapper._printMap();
+    }
+}
 ```
 ```
 Term    Attributes
