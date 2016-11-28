@@ -4,10 +4,13 @@ After reading [Improving the performance of full-text search](https://blogs.drop
 
 To build on what I learnt in last year's object oriented module, I'm going to implement this in Java 8.
 
+
 Aims
 ----
-- Implement an Inverted Index algorithm
-- Measure performance
+[ ] Implement an Inverted Index algorithm  
+[ ] Measure performance  
+[ ] Reiterate on original algorithm  
+
 
 Current Functionality
 ---------------------
