@@ -74,8 +74,7 @@ class Main {
         Mapper m2 = new Mapper("./data/example_2.txt");
         Grouper grouper = new Grouper(m1, m2);
         
-        Reducer reducer = new Reducer();
-        reducer.commitIndex();
+        Reducer reducer = new Reducer(grouper.getInvertedIndex());
     }
 }
 ```
