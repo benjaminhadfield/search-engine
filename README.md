@@ -101,7 +101,7 @@ In this simple example, that limit is set arbitrarily at 100, meaning if the sea
 
 
 **[`Retriever`](https://github.com/benjaminhadfield/search-engine/blob/master/src/com/benhadfield/retriever/Retriever.java)**  
-The `Retriever` class builds a map of terms to term location whilst terms are indexed.
+The `Retriever` class builds a map of term to term location whilst terms are indexed.
 This map can then be queried using the `get()` method to return the encoded locations of the relevant files.
 
 ```java
@@ -124,4 +124,5 @@ Resources
  Retrieval](http://www.dcs.bbk.ac.uk/~dell/teaching/cc/book/ditp/ditp_ch4.pdf)  
 - [Victor Lavrenko's video series](https://www.youtube.com/watch?v=Mlp8hlKwETs)  
 - [Dropbox Blog: Improving the performance of full-text search](https://blogs.dropbox.com/tech/2016/09/improving-the-performance-of-full-text-search/)  
-- [Felipe Hummel's Tiny Search Engine](https://github.com/felipehummel/TinySearchEngine/blob/master/scala/tinySearch.scala)
+- [Felipe Hummel's Tiny Search Engine](https://github.com/felipehummel/TinySearchEngine/blob/master/scala/tinySearch.scala)  
+- [Google Developer: Base 128 Varints](https://developers.google.com/protocol-buffers/docs/encoding#varints)  

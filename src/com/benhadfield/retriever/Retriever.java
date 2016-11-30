@@ -22,13 +22,10 @@ public class Retriever {
         locations.put(term, location);
     }
 
-    public static TermLocation getLocation(String term) {
-        return locations.get(term);
-    }
-
     public static String get(String term) {
-        if(getLocation(term) != null) {
-            TermLocation location = getLocation(term);
+        term = term.toLowerCase();
+        if(locations.get(term) != null) {
+            TermLocation location = locations.get(term);
             try {
                 return readAtLocation(location.getPath(), location.getOffset());
             } catch (Exception e) {

@@ -11,13 +11,16 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Mapper m1 = new Mapper("./data/example/example_1.txt");
-        Mapper m2 = new Mapper("./data/example/example_2.txt");
+        Mapper m1 = new Mapper("./data/coffee/introduction.txt");
+        Mapper m2 = new Mapper("./data/coffee/roasting.txt");
+        Mapper m3 = new Mapper("./data/coffee/coffeehouses.txt");
+        Mapper m4 = new Mapper("./data/coffee/folklore.txt");
 
-        Grouper grouper = new Grouper(m1, m2);
+        Grouper grouper = new Grouper(m1, m2, m3, m4);
         Reducer reducer = new Reducer(grouper.getInvertedIndex());
 
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a search term:");
         while(true) {
             String searchTerm = scanner.nextLine();
             if ("exit()".equals(searchTerm)) {
