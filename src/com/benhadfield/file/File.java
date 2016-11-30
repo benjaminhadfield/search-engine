@@ -56,6 +56,21 @@ public class File {
         }
     }
 
+    public String readLine(long line) throws IOException, IndexOutOfBoundsException {
+        // read the specified line (starting from 0)
+        if (line >= getFileLineCount()) {
+            throw new IndexOutOfBoundsException("Line " + line + " does not exist in file " + path + ".");
+        }
+
+        FileReader fr = new FileReader(path);
+        BufferedReader br = new BufferedReader(fr);
+        for (int i = 0; i < line; i++) {
+            br.readLine();
+        }
+
+        return br.readLine();
+    }
+
     private int getFileLineCount() throws IOException {
         // setup readers
         FileReader fr = new FileReader(path);

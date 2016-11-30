@@ -1,7 +1,8 @@
 package com.benhadfield.retriever;
 
-import com.benhadfield.indexer.Reducer;
+import com.benhadfield.file.File;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -10,12 +11,30 @@ import java.util.HashMap;
  */
 
 public class Retriever {
-    // choosing HashMap because chance of collisions is low, therefore will get close to O(1) time
+    // choosing HashMap because chance of collisions is low, therefore we should get close to O(1) time
     private static HashMap<String, TermLocation> locations = new HashMap<>();
 
     public static void addLocation(String term, String path, long offset) {
         TermLocation location = new TermLocation(path, offset);
         locations.put(term, location);
+    }
+
+    public static TermLocation getLocation(String term) {
+        return locations.get(term);
+    }
+
+    public static String get(String term) {
+        if(getLocation(term) == null) {
+            return term + " not found.";
+        } else {
+            TermLocation location = getLocation(term);
+            try {
+                String postings = readAtLocation(location.getPath(), location.getOffset());
+                return postings;
+            } catch (Exception e) {
+                return "There was an error performing the search.";
+            }
+        }
     }
 
     public static void _printLocations() {
@@ -27,7 +46,8 @@ public class Retriever {
         });
     }
 
-    public static TermLocation get(String term) {
-        return locations.get(term);
+    private static String readAtLocation(String path, long offset) throws IOException, IndexOutOfBoundsException {
+        File file = new File(path);
+        return file.readLine(offset);
     }
 }
