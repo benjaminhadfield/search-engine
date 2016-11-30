@@ -24,17 +24,15 @@ public class Retriever {
     }
 
     public static String get(String term) {
-        if(getLocation(term) == null) {
-            return term + " not found.";
-        } else {
+        if(getLocation(term) != null) {
             TermLocation location = getLocation(term);
             try {
-                String postings = readAtLocation(location.getPath(), location.getOffset());
-                return postings;
+                return readAtLocation(location.getPath(), location.getOffset());
             } catch (Exception e) {
-                return "There was an error performing the search.";
+                e.printStackTrace();
             }
         }
+        return null;
     }
 
     public static void _printLocations() {
