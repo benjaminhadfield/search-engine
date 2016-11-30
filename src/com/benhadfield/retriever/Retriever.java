@@ -8,6 +8,9 @@ import java.util.HashMap;
 /**
  * The Retriever class is responsible for mapping terms to file - line offset pairs, so search terms can be quickly
  * found. The map of terms to term locations could be stored in memory.
+ *
+ * Note: this class is responsible for returning the encoded value only, the Query class formats the encoded value
+ * for display to user.
  */
 
 public class Retriever {
