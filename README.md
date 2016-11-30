@@ -100,8 +100,23 @@ The reducer is capable of distributing the index across multiple files to preven
 In this simple example, that limit is set arbitrarily at 100, meaning if the search space contains greater than 100 tokens then the index will be split across more than one `_index<i>.txt` file.
 
 
-**[`Retriever`](https://github.com/benjaminhadfield/search-engine/blob/master/src/com/benhadfield/retriever/Retriever.java)**
-The `Retriever` class tracks the locations 
+**[`Retriever`](https://github.com/benjaminhadfield/search-engine/blob/master/src/com/benhadfield/retriever/Retriever.java)**  
+The `Retriever` class builds a map of terms to term location whilst terms are indexed.
+This map can then be queried using the `get()` method to return the encoded locations of the relevant files.
+
+```java
+Retriever.get("fish");
+```
+
+This code returns
+
+```text
+0:2,1:2
+```
+
+which indicates that the term "fish" occurs in the file with an ID of 1 twice and in the file with an ID of 2 twice.
+This result can then be interpreted by the `Query` class.
+
 
 Resources
 ---------
