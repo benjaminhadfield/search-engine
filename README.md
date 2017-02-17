@@ -114,7 +114,7 @@ This code returns
 0:2,1:2
 ```
 
-which indicates that the term "fish" occurs in the file with an ID of 1 twice and in the file with an ID of 2 twice.
+which indicates that the term "fish" occurs in the file with ID `0` twice and in the file with ID `1` twice.
 This result can then be interpreted by the `Query` class.
 
 
