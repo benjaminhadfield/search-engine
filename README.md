@@ -97,7 +97,7 @@ The number before the `:` corresponds to the file ID (which is assigned by the `
 The second number corresponds to the number of times the token appears in that file.
 
 The reducer is capable of distributing the index across multiple files to prevent the creation of a single monolithic file.
-In this simple example, that limit is set arbitrarily at 100, meaning if the search space contains greater than 100 tokens then the index will be split across more than one `_index<i>.txt` file.
+In this simple example, that limit is set arbitrarily at 100, meaning if the search space contains greater than 100 tokens then the index will be split across multiple `_index<i>.txt` files.
 
 
 **[`Retriever`](https://github.com/benjaminhadfield/search-engine/blob/master/src/com/benhadfield/retriever/Retriever.java)**  
