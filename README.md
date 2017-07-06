@@ -37,7 +37,7 @@ Term    Attributes
 
 
 **[`Grouper`](https://github.com/benjaminhadfield/search-engine/blob/master/src/com/benhadfield/indexer/Grouper.java)**  
-The `Grouper` class takes a list of `Mapper` objects, and generates an inverted index, which is a map of terms to an array of file ID - token frequency pairs.
+The `Grouper` class takes a list of `Mapper` objects, and generates an inverted index, which is a map of terms to an array of (`file ID`, `token frequency`) pairs.
 Note that terms in the map are sorted alphabetically.
 
 ```java
